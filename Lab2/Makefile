@@ -2,6 +2,7 @@ CC = /opt/sc-dt/riscv-gcc/bin/riscv64-unknown-linux-gnu-gcc
 QEMU_USER ?= /opt/sc-dt/tools/bin/qemu-riscv63
 CFLAGS ?= -O0
 CONTAINER ?= rv_sim_bench
+# MY_PATH ?= ${pwd}
 BIN := example
 
 .PHONY: clean
@@ -21,6 +22,5 @@ fact: fact.c
 example: main.c
 	${CC} ${CFLAGS} $^ -o ${BIN}
 
-comp-obj-docker: main.c
-	MY_PATH ?= pwd
-	sudo docker exec -it ${CONTAINER} ${CC} ${CFLAGS} ${MY_PATH}/$^ -c -o $^.o
+rv-main-obj: main.c
+	sudo docker exec -it ${CONTAINER} ${CC} ${CFLAGS} ${PWD}/$^ -c -o ${PWD}/$@.o
