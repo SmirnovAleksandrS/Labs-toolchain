@@ -24,8 +24,8 @@ hello: sort
 
 build: hello
 
-# build-llvm: sort
-# 	sudo docker exec -it ${CONTAINER} ${CCLLVM} ${CFLAGS} ${PWD}/$^.c -o ${PWD}/${BUILD_DIR}/$^.elf
+build-gem: 
+	sudo docker exec -it ${CONTAINER} ${CC} ${CFLAGS} ${CFLAGS_CONST} ${PWD}/sort_for_gem5.c -o ${PWD}/${BUILD_DIR}/${NAME}.elf
 
 show: sort
 	file ${BUILD_DIR}/sort.elf
@@ -41,6 +41,3 @@ clean:
 
 docker-asm: sort
 	sudo docker exec -it ${CONTAINER} ${CC} ${CFLAGS} ${PWD}/$^.c -S -o ${PWD}/${ASM_DIR}/$^.asm
-
-# docker-asm-llvm: sort
-# 	sudo docker exec -it ${CONTAINER} ${CCLLVM} ${CFLAGS} ${PWD}/$^.c -S -o ${PWD}/${ASM_DIR}/$^.asm
