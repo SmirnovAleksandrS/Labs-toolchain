@@ -155,6 +155,8 @@ O3 117.5%
 
 ##### QEMU
 
+![Результаты Qemu](./qemu_gcc_llvm_only_100.png)
+
 ```
 Only 100 points
 qemu_gcc_O0_100  0.1442  us/val
@@ -183,6 +185,9 @@ O3 100.0%
 ```
 
 ##### Licheepi4A
+
+
+![Результаты LicheePi4a](./licheepi4A_gcc_llvm_only_100.png)
 
 ```
 Only 100 points
