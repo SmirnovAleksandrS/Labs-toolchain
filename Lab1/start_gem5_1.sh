@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 gem5 ./build/gem/gem-gcc-O0.py
 cp ./data/gem5/out.csv ./data/gem5/gem-gcc-O0.csv

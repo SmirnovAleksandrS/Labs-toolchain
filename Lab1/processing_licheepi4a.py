@@ -49,7 +49,7 @@ print("licheepi_gcc_O3 ",round(z[0]*10**6,5), " us/val", file=open("result/liche
 plt.grid()
 plt.xlim(0)
 plt.ylim(0)
-plt.legend(markerscale=30)
+plt.legend(markerscale=10)
 plt.title("All gcc optimizations")
 plt.xlabel("Len of massive")
 plt.ylabel("Time, s")
@@ -100,7 +100,7 @@ print("licheepi_llvm_O3 ",round(z[0]*10**6,5), " us/val", file=open("result/lich
 plt.grid()
 plt.xlim(0)
 plt.ylim(0)
-plt.legend(markerscale=30)
+plt.legend(markerscale=10)
 plt.title("All llvm optimizations")
 plt.xlabel("Len of massive")
 plt.ylabel("Time, s")
@@ -113,6 +113,7 @@ plt.plot(gcc_x[0], gcc_y[0], color = "skyblue", marker="+", ms=ms_size, ls="", l
 plt.plot(gcc_x[1], gcc_y[1], color = "dodgerblue", marker="+", ms=ms_size, ls="", label="O1 GCC")
 plt.plot(gcc_x[2], gcc_y[2], color = "royalblue", marker="+", ms=ms_size, ls="", label="O2 GCC")
 plt.plot(gcc_x[3], gcc_y[3], color = "navy", marker="+", ms=ms_size, ls="", label="O3 GCC")
+plt.legend(markerscale=10)
 plt.savefig("result/licheepi_gcc_llvm.png")
 
 #Licheepi4a analyzes
@@ -140,3 +141,111 @@ print("O0", str(round(coef_llvm[0]/llvm_best*100, 1))+ "%", file=open("result/li
 print("O1", str(round(coef_llvm[1]/llvm_best*100, 1))+ "%", file=open("result/licheepi4a_result.txt", "a"))
 print("O2", str(round(coef_llvm[2]/llvm_best*100, 1))+ "%", file=open("result/licheepi4a_result.txt", "a"))
 print("O3", str(round(coef_llvm[3]/llvm_best*100, 1))+ "%", file=open("result/licheepi4a_result.txt", "a"))
+
+
+
+#Only 100 points
+plt.clf()
+
+print("\nOnly 100 points", file=open("result/licheepi4a_result.txt", "a"))
+ms_size = 0.5
+
+plt.plot(gcc_x[0][:100], gcc_y[0][:100], color = "skyblue", marker="+", ms=ms_size, ls="", label="O0 GCC")
+plt.plot(gcc_x[1][:100], gcc_y[1][:100], color = "dodgerblue", marker="+", ms=ms_size, ls="", label="O1 GCC")
+plt.plot(gcc_x[2][:100], gcc_y[2][:100], color = "royalblue", marker="+", ms=ms_size, ls="", label="O2 GCC")
+plt.plot(gcc_x[3][:100], gcc_y[3][:100], color = "navy", marker="+", ms=ms_size, ls="", label="O3 GCC")
+
+plt.plot(llvm_x[0][:100], llvm_y[0][:100], color = "lightcoral", marker="+", ms=ms_size, ls="", label="O0 LLVM")
+plt.plot(llvm_x[1][:100], llvm_y[1][:100], color = "firebrick", marker="+", ms=ms_size, ls="", label="O1 LLVM")
+plt.plot(llvm_x[2][:100], llvm_y[2][:100], color = "red", marker="+", ms=ms_size, ls="", label="O2 LLVM")
+plt.plot(llvm_x[3][:100], llvm_y[3][:100], color = "maroon", marker="+", ms=ms_size, ls="", label="O3 LLVM")
+
+coef_gcc = []
+
+z = np.polyfit(gcc_x[0][:100], gcc_y[0][:100], 1)
+p = np.poly1d (z)
+plt.plot (gcc_x[0][:100], p(gcc_x[0][:100]), linewidth=0.2, color = "skyblue")
+coef_gcc.append(round(z[0]*10**6,5))
+print("qemu_gcc_O0_100 ",round(z[0]*10**6,5), " us/val", file=open("result/licheepi4a_result.txt", "a"))
+
+z = np.polyfit(gcc_x[1][:100], gcc_y[1][:100], 1)
+p = np.poly1d (z)
+plt.plot (gcc_x[1][:100], p(gcc_x[1][:100]), linewidth=0.2, color = "dodgerblue")
+coef_gcc.append(round(z[0]*10**6,5))
+print("qemu_gcc_O1_100 ",round(z[0]*10**6,5), " us/val", file=open("result/licheepi4a_result.txt", "a"))
+
+z = np.polyfit(gcc_x[2][:100], gcc_y[2][:100], 1)
+p = np.poly1d (z)
+plt.plot (gcc_x[2][:100], p(gcc_x[2][:100]), linewidth=0.2, color = "royalblue")
+coef_gcc.append(round(z[0]*10**6,5))
+print("qemu_gcc_O2_100 ",round(z[0]*10**6,5), " us/val", file=open("result/licheepi4a_result.txt", "a"))
+
+z = np.polyfit(gcc_x[3][:100], gcc_y[3][:100], 1)
+p = np.poly1d (z)
+plt.plot (gcc_x[3][:100], p(gcc_x[3][:100]), linewidth=0.2, color = "navy")
+coef_gcc.append(round(z[0]*10**6,5))
+print("qemu_gcc_O3_100 ",round(z[0]*10**6,5), " us/val", file=open("result/licheepi4a_result.txt", "a"))
+
+coef_llvm = []
+
+z = np.polyfit(llvm_x[0][:100], llvm_y[0][:100], 1)
+p = np.poly1d (z)
+plt.plot (llvm_x[0][:100], p(llvm_x[0][:100]), linewidth=0.2, color = "lightcoral")
+coef_llvm.append(round(z[0]*10**6,5))
+print("qemu_llvm_O0_100 ",round(z[0]*10**6,5), " us/val", file=open("result/licheepi4a_result.txt", "a"))
+
+z = np.polyfit(llvm_x[1][:100], llvm_y[1][:100], 1)
+p = np.poly1d (z)
+plt.plot (llvm_x[1][:100], p(llvm_x[1][:100]), linewidth=0.2, color = "firebrick")
+coef_llvm.append(round(z[0]*10**6,5))
+print("qemu_llvm_O1_100 ",round(z[0]*10**6,5), " us/val", file=open("result/licheepi4a_result.txt", "a"))
+
+z = np.polyfit(llvm_x[2][:100], llvm_y[2][:100], 1)
+p = np.poly1d (z)
+plt.plot (llvm_x[2][:100], p(llvm_x[2][:100]), linewidth=0.2, color = "red")
+coef_llvm.append(round(z[0]*10**6,5))
+print("qemu_llvm_O2_100 ",round(z[0]*10**6,5), " us/val", file=open("result/licheepi4a_result.txt", "a"))
+
+z = np.polyfit(llvm_x[3][:100], llvm_y[3][:100], 1)
+p = np.poly1d (z)
+plt.plot (llvm_x[3][:100], p(llvm_x[3][:100]), linewidth=0.2, color = "maroon")
+coef_llvm.append(round(z[0]*10**6,5))
+print("qemu_llvm_O3_100 ",round(z[0]*10**6,5), " us/val", file=open("result/licheepi4a_result.txt", "a"))
+
+
+
+
+
+print("\nQEMU results analysis: ", file=open("result/licheepi4a_result.txt", "a"))
+gcc_best = min(coef_gcc)
+i = 0
+while gcc_best != coef_gcc[i]:
+    i += 1
+print("Best GCC result - " + str(gcc_best) + " us/val - in O" + str(i), file=open("result/licheepi4a_result.txt", "a"))
+llvm_best = min(coef_llvm)
+i = 0
+while llvm_best != coef_llvm[i]:
+    i += 1
+print("Best LLVM result - " + str(llvm_best) + " us/val - in O" + str(i), file=open("result/licheepi4a_result.txt", "a"))
+
+print("Percentage for the best result", file=open("result/licheepi4a_result.txt", "a"))
+print("GCC", file=open("result/licheepi4a_result.txt", "a"))
+print("O0", str(round(coef_gcc[0]/gcc_best*100, 1))+ "%", file=open("result/licheepi4a_result.txt", "a"))
+print("O1", str(round(coef_gcc[1]/gcc_best*100, 1))+ "%", file=open("result/licheepi4a_result.txt", "a"))
+print("O2", str(round(coef_gcc[2]/gcc_best*100, 1))+ "%", file=open("result/licheepi4a_result.txt", "a"))
+print("O3", str(round(coef_gcc[3]/gcc_best*100, 1))+ "%", file=open("result/licheepi4a_result.txt", "a"))
+
+print("LLVM", file=open("result/licheepi4a_result.txt", "a"))
+print("O0", str(round(coef_llvm[0]/llvm_best*100, 1))+ "%", file=open("result/licheepi4a_result.txt", "a"))
+print("O1", str(round(coef_llvm[1]/llvm_best*100, 1))+ "%", file=open("result/licheepi4a_result.txt", "a"))
+print("O2", str(round(coef_llvm[2]/llvm_best*100, 1))+ "%", file=open("result/licheepi4a_result.txt", "a"))
+print("O3", str(round(coef_llvm[3]/llvm_best*100, 1))+ "%", file=open("result/licheepi4a_result.txt", "a"))
+
+plt.grid()
+plt.xlim(0)
+plt.ylim(0)
+plt.legend(markerscale=10)
+plt.title("All llvm optimizations")
+plt.xlabel("Len of massive")
+plt.ylabel("Time, s")
+plt.savefig("result/licheepi4A_gcc_llvm_only_100.png")

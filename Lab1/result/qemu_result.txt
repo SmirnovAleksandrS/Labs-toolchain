@@ -22,3 +22,28 @@ O0 145.7%
 O1 109.2%
 O2 103.0%
 O3 100.0%
+
+Only 100 points
+qemu_gcc_O0_100  0.1442  us/val
+qemu_gcc_O1_100  0.07953  us/val
+qemu_gcc_O2_100  0.11345  us/val
+qemu_gcc_O3_100  0.11305  us/val
+qemu_llvm_O0_100  0.1653  us/val
+qemu_llvm_O1_100  0.13682  us/val
+qemu_llvm_O2_100  0.13245  us/val
+qemu_llvm_O3_100  0.12787  us/val
+
+QEMU results analysis: 
+Best GCC result - 0.07953 us/val - in O1
+Best LLVM result - 0.12787 us/val - in O3
+Percentage for the best result
+GCC
+O0 181.3%
+O1 100.0%
+O2 142.7%
+O3 142.1%
+LLVM
+O0 129.3%
+O1 107.0%
+O2 103.6%
+O3 100.0%

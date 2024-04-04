@@ -1,0 +1,24 @@
+Results on GEM5
+gem5_gcc_O0  54.13833  us/val
+gem5_gcc_O1  15.83375  us/val
+gem5_gcc_O2  16.36795  us/val
+gem5_gcc_O3  16.36918  us/val
+gem5_llvm_O0  53.4226  us/val
+gem5_llvm_O1  18.49606  us/val
+gem5_llvm_O2  19.66891  us/val
+gem5_llvm_O3  21.73218  us/val
+
+gem5 results analysis: 
+Best GCC result - 15.83375 us/val - in O1
+Best LLVM result - 18.49606 us/val - in O1
+Percentage for the best result
+GCC
+O0 341.9%
+O1 100.0%
+O2 103.4%
+O3 103.4%
+LLVM
+O0 288.8%
+O1 100.0%
+O2 106.3%
+O3 117.5%

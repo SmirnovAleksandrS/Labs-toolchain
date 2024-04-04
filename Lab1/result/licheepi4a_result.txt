@@ -1,3 +1,4 @@
+
 Results on Licheepi4a 
 licheepi_gcc_O0  0.48739  us/val
 licheepi_gcc_O1  0.13798  us/val
@@ -22,3 +23,28 @@ O0 214.6%
 O1 103.7%
 O2 101.9%
 O3 100.0%
+
+Only 100 points
+qemu_gcc_O0_100  0.29904  us/val
+qemu_gcc_O1_100  0.08596  us/val
+qemu_gcc_O2_100  0.09479  us/val
+qemu_gcc_O3_100  0.09551  us/val
+qemu_llvm_O0_100  0.22209  us/val
+qemu_llvm_O1_100  0.11509  us/val
+qemu_llvm_O2_100  0.11528  us/val
+qemu_llvm_O3_100  0.11564  us/val
+
+QEMU results analysis: 
+Best GCC result - 0.08596 us/val - in O1
+Best LLVM result - 0.11509 us/val - in O1
+Percentage for the best result
+GCC
+O0 347.9%
+O1 100.0%
+O2 110.3%
+O3 111.1%
+LLVM
+O0 193.0%
+O1 100.0%
+O2 100.2%
+O3 100.5%
