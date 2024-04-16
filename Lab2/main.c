@@ -1,5 +1,5 @@
-
 #include <stdio.h>
+// #include "fact.c"
 
 int main() {
   unsigned f = fact(5);

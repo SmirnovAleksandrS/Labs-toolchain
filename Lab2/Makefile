@@ -23,4 +23,5 @@ example: main.c
 	${CC} ${CFLAGS} $^ -o ${BIN}
 
 rv-main-obj: main.c
-	sudo docker exec -it ${CONTAINER} ${CC} ${CFLAGS} ${PWD}/$^ -c -o ${PWD}/$@.o`
+	sudo docker exec -it ${CONTAINER} ${CC} ${CFLAGS} ${PWD}/$^ -c -o ${PWD}/$@.o
+	
